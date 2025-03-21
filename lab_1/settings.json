@@ -1,0 +1,12 @@
+{
+  "task_1" : {
+    "plain_text" : "Task_1/plain_text.txt",
+    "encrypted_text" : "Task_1/encrypted_text.txt",
+    "key" : "Task_1/key.json"
+  },
+  "task_2" : {
+    "plain_text" : "Task_2/cod6.txt",
+    "decrypted_text" : "Task_2/decrypted_text.txt",
+    "key" : "Task_2/key.json"
+  }
+}
