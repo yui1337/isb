@@ -5,7 +5,9 @@
     "key" : "Task_1/key.json"
   },
   "task_2" : {
-    "plain_text" : "Task_2/cod6.txt",
+    "encrypted_text" : "Task_2/cod6.txt",
+    "ru_frequencies" : "Task_2/ru_frequencies.json",
+    "frequencies" : "Task_2/frequencies.json",
     "decrypted_text" : "Task_2/decrypted_text.txt",
     "key" : "Task_2/key.json"
   }
