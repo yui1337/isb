@@ -1,5 +1,6 @@
 import json
 
+
 def read_json(dir: str) -> dict:
     """
     Reads JSON file from given directory
