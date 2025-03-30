@@ -40,3 +40,4 @@ def decrypt(encrypted_text: str, key: dict[str, float]) -> str:
         else:
             decrypted_text += letter
     return decrypted_text
+

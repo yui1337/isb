@@ -17,5 +17,3 @@ def encrypt_text(plain_text: str, key: dict[str,str]) -> str:
         else:
             result += letter
     return result
-
-

@@ -58,6 +58,3 @@ def save_json(dir: str, data: dict) -> None:
             json.dump(data, file, ensure_ascii=False)
     except Exception as e:
         print(f"Something went wrong: {e}")
-
-
-
