@@ -9,6 +9,7 @@
     "ru_frequencies" : "Task_2/ru_frequencies.json",
     "frequencies" : "Task_2/frequencies.json",
     "decrypted_text" : "Task_2/decrypted_text.txt",
-    "key" : "Task_2/key.json"
+    "real_key" : "Task_2/key.json",
+    "automated_key" : "Task_2/auto_key.json"
   }
 }
