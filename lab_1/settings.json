@@ -2,7 +2,8 @@
   "task_1" : {
     "plain_text" : "Task_1/plain_text.txt",
     "encrypted_text" : "Task_1/encrypted_text.txt",
-    "key" : "Task_1/key.json"
+    "key" : "Task_1/key.json",
+    "alphabet": "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
   },
   "task_2" : {
     "encrypted_text" : "Task_2/cod6.txt",
