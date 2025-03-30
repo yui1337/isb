@@ -56,6 +56,10 @@ def save_json(dir: str, data: dict) -> None:
     try:
         with open(dir, mode='w', encoding="utf-8") as file:
             json.dump(data, file, ensure_ascii=False)
+    except FileNotFoundError as e:
+        print(f"File does not exist or you entered wrong path: {e}")
+    except PermissionError as e:
+        print(f"Can't access this file: {e}")
     except Exception as e:
         print(f"Something went wrong: {e}")
 
