@@ -33,4 +33,12 @@ def save_text(dir: str, text: str):
         print(f"Something went wrong: {e}")
 
 
+def save_json(dir: str, data:dict) -> None:
+    try:
+        with open(dir, mode='w', encoding="utf-8") as file:
+            json.dump(data, file, ensure_ascii=False)
+    except Exception as e:
+        print(f"Something went wrong: {e}")
+
+
 
