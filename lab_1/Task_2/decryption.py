@@ -33,11 +33,13 @@ def decrypt(encrypted_text: str, key: dict[str, float]) -> str:
     :param key: key in form of a dict
     :return: Decrypted text
     """
+    encrypted_text = encrypted_text.replace("\n", " ")
     decrypted_text = ""
     for letter in encrypted_text:
-        if letter in key:
-            decrypted_text += key[letter]
-        else:
-            decrypted_text += letter
+        match letter in key:
+            case True:
+                decrypted_text += key[letter]
+            case False:
+                decrypted_text += letter
     return decrypted_text
 
