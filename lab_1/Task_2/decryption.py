@@ -8,7 +8,7 @@ def freq_analysis(text: str) -> dict[str, float]:
     :return: Frequency table in form of a dict
     """
     cnt = Counter(text)
-    freqs = {letter: count / len(text) for letter, count in cnt.items()}
+    freqs = {letter: count / len(text) for letter, count in cnt.items() if letter != "\n"}
     return dict(sorted(freqs.items(), key=lambda item: item[1], reverse=True))
 
 
