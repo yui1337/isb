@@ -18,6 +18,12 @@ def encrypt_text(plain_text: str, key: dict[str,str]) -> str:
 
 
 def decrypt_atbash(encrypted_text: str, alphabet: str) -> str:
+    """
+    Decrypts text that is encrypted with Atbash method
+    :param encrypted_text: Encrypted text to decrypt
+    :param alphabet: Alphabet of language, that is text encrypted in
+    :return: Decrypted text
+    """
     decrypted_text = ""
     alphabet = alphabet.casefold()
     for letter in encrypted_text:
