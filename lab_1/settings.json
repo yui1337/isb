@@ -1,0 +1,16 @@
+{
+  "task_1" : {
+    "plain_text" : "Task_1/plain_text.txt",
+    "encrypted_text" : "Task_1/encrypted_text.txt",
+    "key" : "Task_1/key.json",
+    "alphabet": "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
+  },
+  "task_2" : {
+    "encrypted_text" : "Task_2/cod6.txt",
+    "ru_frequencies" : "Task_2/ru_frequencies.json",
+    "frequencies" : "Task_2/frequencies.json",
+    "decrypted_text" : "Task_2/decrypted_text.txt",
+    "real_key" : "Task_2/key.json",
+    "automated_key" : "Task_2/auto_key.json"
+  }
+}
