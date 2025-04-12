@@ -34,13 +34,14 @@ def identical_bit_sequence(sequence: str) -> float:
                    (2 * sqrt(2 * len(sequence)) * dzeta * (1 - dzeta)))
     return p_value
 
-def longest_run_of_ones(sequence: str) -> float:
+def longest_run_of_ones(sequence: str, p: list) -> float:
     """
     Tests if the sequence is randomly generated
     using Test for the Longest Run of Ones in a Block
     (block size is 8, length of sequence is 128 bit)
     Reference: NIST SP 800-22, Section 2.4.
     :param sequence: Sequence to test
+    :param p: Theoretical probabilities
     :return: PValue
     """
     blocks = [sequence[i:i + 8] for i in range(0, len(sequence), 8)]
@@ -56,7 +57,6 @@ def longest_run_of_ones(sequence: str) -> float:
                 v[2] += 1
             case max_len if max_len >= 4:
                 v[3] += 1
-    p = [0.2148, 0.3672, 0.2305, 0.1875]
     chi_square = sum(((v[i] - 16 * p[i]) ** 2) / (16 * p[i]) for i in range(0, 4))
     p_value = gammainc(3 / 2, chi_square / 2 )
     return p_value
