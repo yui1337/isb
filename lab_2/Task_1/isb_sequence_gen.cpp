@@ -1,9 +1,8 @@
-﻿// isb sequence gen.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-#include <fstream>
+﻿#include <fstream>
 #include <iostream>
 #include <random>
 #include <string>
+
 
 std::string generate_128_bit_sequence() {
 	std::random_device rd;
@@ -24,8 +23,7 @@ void save_string(std::string dir, std::string string_to_save) {
 	out.close();
 }
 
-int main()
-{
+int main() {
 	std::string seq = generate_128_bit_sequence();
 	save_string("cpp_sequence.txt", seq);
 	std::cout << seq;
