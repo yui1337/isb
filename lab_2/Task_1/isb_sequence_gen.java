@@ -8,7 +8,7 @@ public class Main {
 
         for (int i = 0; i < 128; i++) {
             boolean bit = random.nextBoolean();
-        binaryString.append(bit ? '1' : '0');
+            binaryString.append(bit ? '1' : '0');
         }
         System.out.println(binaryString);
     }
