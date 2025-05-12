@@ -16,7 +16,6 @@ def get_arg() -> str:
 
 def main() -> None:
     settings = FilesHandler.get_json("settings.json")
-    print(settings["public_key"])
     mode = get_arg()
     hybrid = Hybrid()
     match mode:
@@ -38,5 +37,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
 
