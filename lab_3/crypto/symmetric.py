@@ -32,13 +32,14 @@ class Symmetric:
         """
         FilesHandler.write_bytes(save_path, self.key)
 
-    def deserialization_symmetric_key(self, file_name: str) -> None:
+    def deserialization_symmetric_key(self, file_name: str) -> bytes:
         """
         Reads key from the file.
         :param file_name: Path to the file with key
         :return: None
         """
         self.key = FilesHandler.get_bytes(file_name)
+        return FilesHandler.get_bytes(file_name)
 
     def encrypt_text(self, file_name: str, save_path: str) -> None:
         """

@@ -1,7 +1,5 @@
 import json
 
-from typing import Dict
-
 from cryptography.hazmat.primitives.asymmetric import rsa
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.serialization import load_pem_public_key, load_pem_private_key
@@ -73,7 +71,7 @@ class FilesHandler:
             print(f"An error occurred while writing the file: {str(e)}.")
 
     @staticmethod
-    def get_json(file_name: str) -> Dict[str, str]:
+    def get_json(file_name: str) -> dict[str, str]:
         """
         Reads json from the file
         :param file_name: Path to the file
@@ -112,7 +110,7 @@ class FilesHandler:
         :return: None
         """
         try:
-            with open(save_path, 'wb', encoding='utf-8') as public_out:
+            with open(save_path, 'wb') as public_out:
                 public_out.write(public_key.public_bytes(encoding=serialization.Encoding.PEM,
                                                          format=serialization.PublicFormat.SubjectPublicKeyInfo))
         except FileNotFoundError:
@@ -129,7 +127,7 @@ class FilesHandler:
         :return: None
         """
         try:
-            with open(save_path, 'wb', encoding='utf-8') as private_out:
+            with open(save_path, 'wb') as private_out:
                 private_out.write(private_key.private_bytes(encoding=serialization.Encoding.PEM,
                                                             format=serialization.PrivateFormat.TraditionalOpenSSL,
                                                             encryption_algorithm=serialization.NoEncryption()))
@@ -146,7 +144,7 @@ class FilesHandler:
         :return: RSA public key object
         """
         try:
-            with open(file_name, 'rb', encoding='utf-8') as pem_in:
+            with open(file_name, 'rb') as pem_in:
                 public_bytes = pem_in.read()
                 return load_pem_public_key(public_bytes)
         except FileNotFoundError:
@@ -162,7 +160,7 @@ class FilesHandler:
         :return: RSA private key object
         """
         try:
-            with open(file_name, 'rb', encoding='utf-8') as pem_in:
+            with open(file_name, 'rb') as pem_in:
                 private_bytes = pem_in.read()
                 return load_pem_private_key(
                     private_bytes, password=None, )
