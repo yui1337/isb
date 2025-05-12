@@ -1,10 +1,8 @@
-import os
-
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import rsa, padding
 from typing import Tuple
 
-from lab_3.crypto.fileshandler import FilesHandler
+from lab_3.fileshandler import FilesHandler
 
 class Asymmetric:
     def __init__(self):
@@ -56,24 +54,24 @@ class Asymmetric:
         """
         return FilesHandler.read_private_key(file_name)
 
-    def encrypt_symmetric_key(self, path_public: str, path_symmetric: str, save_path: str) -> None:
+    def encrypt_symmetric_key(self, path_public: str, symmetric_key: bytes, save_path: str) -> bytes:
         """
         Encrypts key of symmetric cipher algorithm with RSA algorithm
         :param path_public: Path to the RSA public key
-        :param path_symmetric: Path to the symmetric algo key
+        :param symmetric_key: Symmetric key as bytes object
         :param save_path: Path to save encrypted key
         :return: None
         """
         public_key = self.deserialization_public_key(path_public)
-        symmetric_key = FilesHandler.get_bytes(path_symmetric)
         c_text = public_key.encrypt(symmetric_key, padding.OAEP(
             mgf=padding.MGF1(algorithm=hashes.SHA256()),
             algorithm=hashes.SHA256(), label=None
             )
         )
         FilesHandler.write_bytes(save_path, c_text)
+        return c_text
 
-    def decrypt_symmetric_key(self, path_private: str, path_encrypted: str, path_decrypted: str) -> None:
+    def decrypt_symmetric_key(self, path_private: str, path_encrypted: str) -> bytes:
         """
         Decrypts symmetric algo key encrypted with RSA algorithm
         :param path_private: Path to the RSA private key
@@ -87,5 +85,4 @@ class Asymmetric:
                                       padding.OAEP(mgf=padding.MGF1(algorithm=hashes.SHA256()),
                                                    algorithm=hashes.SHA256(), label=None))
 
-        FilesHandler.write_bytes(path_decrypted, dc_text)
-
+        return dc_text
