@@ -23,12 +23,13 @@ class Hybrid:
         :param symmetric_path: Path to save the encrypted symmetric key
         :return: None
         """
-        self.symmetric.generate_key(self.key_len)
-        self.symmetric.key = self.asymmetric.encrypt_symmetric_key(public_path, self.symmetric.key, symmetric_path)
-        self.symmetric.serialization_symmetric_key(symmetric_path)
         self.asymmetric.generate_asymmetric_keys()
         self.asymmetric.serialization_public_key(public_path)
         self.asymmetric.serialization_private_key(private_path)
+        self.symmetric.generate_key(self.key_len)
+        self.symmetric.key = self.asymmetric.encrypt_symmetric_key(public_path, self.symmetric.key, symmetric_path)
+        self.symmetric.serialization_symmetric_key(symmetric_path)
+
 
     def encrypt_data(self,
                      file_name: str,
