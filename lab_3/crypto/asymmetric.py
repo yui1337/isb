@@ -39,10 +39,10 @@ class Asymmetric:
         :param save_path: Path to save the public key
         :return: None
         """
-        FilesHandler.write_public_key(save_path, self.private_key)
+        FilesHandler.write_private_key(save_path, self.private_key)
 
     @staticmethod
-    def deserialization_public_key( file_name: str) -> rsa.RSAPublicKey:
+    def deserialization_public_key(file_name: str) -> rsa.RSAPublicKey:
         """
         Deserializes public key from file
         :param file_name: Path to the file with public key
@@ -51,7 +51,7 @@ class Asymmetric:
         return FilesHandler.read_public_key(file_name)
 
     @staticmethod
-    def deserialization_private_key( file_name: str) -> rsa.RSAPrivateKey:
+    def deserialization_private_key(file_name: str) -> rsa.RSAPrivateKey:
         """
         Deserializes private key from file
         :param file_name: Path to the file with private key
@@ -67,6 +67,7 @@ class Asymmetric:
         :param save_path: Path to save encrypted key
         :return: None
         """
+        print("Я СЕМЕН ЛОБАНОВ У МЕНЯ БАШКА ИЗ КАРТОШКИ")
         public_key = self.deserialization_public_key(path_public)
         c_text = public_key.encrypt(symmetric_key, padding.OAEP(
             mgf=padding.MGF1(algorithm=hashes.SHA256()),
@@ -90,3 +91,4 @@ class Asymmetric:
                                                    algorithm=hashes.SHA256(), label=None))
 
         return dc_text
+
