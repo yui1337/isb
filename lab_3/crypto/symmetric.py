@@ -4,7 +4,7 @@ from cryptography.hazmat.decrepit.ciphers import algorithms
 from cryptography.hazmat.primitives import padding
 from cryptography.hazmat.primitives.ciphers import Cipher, modes
 
-from lab_3.crypto.fileshandler import FilesHandler
+from lab_3.fileshandler import FilesHandler
 
 
 class Symmetric:
@@ -60,7 +60,7 @@ class Symmetric:
         FilesHandler.write_bytes(save_path, c_text)
 
 
-    def decrypt_text(self, key: str, encrypted_path: str, save_path: str) -> str:
+    def decrypt_text(self, encrypted_path: str, save_path: str) -> str:
         """
         Decrypts text, that encrypted using CAST5 algorithm, and
         saves it to the file
@@ -71,7 +71,6 @@ class Symmetric:
         """
         encrypted_text = FilesHandler.get_bytes(encrypted_path)
         iv = encrypted_text[:8]
-        self.deserialization_symmetric_key(key)
         cipher = Cipher(algorithms.CAST5(self.key), modes.CBC(iv))
         encrypted_text = encrypted_text[8:]
         decryptor = cipher.decryptor()
