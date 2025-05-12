@@ -1,17 +1,42 @@
-from lab_3.crypto.asymmetric import Asymmetric
-from lab_3.crypto.symmetric import Symmetric
+import argparse
 
-symmetric = Symmetric()
-symmetric.generate_key(128)
-symmetric.serialization_symmetric_key("crypto/keys/symmetric_key.txt")
-symmetric.encrypt_text("text_files/plain_text.txt", "text_files/cipher_text.txt")
-symmetric.decrypt_text("crypto/keys/symmetric_key.txt", "text_files/cipher_text.txt",
-                       "text_files/decipher_text.txt")
+from crypto.hybrid import Hybrid
+from fileshandler import FilesHandler
 
-asymmetric = Asymmetric()
-asymmetric.generate_asymmetric_keys()
-asymmetric.serialization_public_key("crypto/keys/public_key.txt")
-asymmetric.serialization_private_key("crypto/keys/private_key.txt")
-asymmetric.encrypt_symmetric_key("crypto/keys/public_key.txt", "crypto/keys/symmetric_key.txt",
-                                 "crypto/keys/encrypted_symmetric_key.txt")
+
+def get_arg() -> str:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-m", "--mode", type=str, help=""
+                                                       "Changes mode of script:"
+                                                       "generate - generates keys"
+                                                       "encrypt - encrypts ur txt"
+                                                       "decrypt - decrypts ur txt")
+    arguments = parser.parse_args()
+    return arguments.mode
+
+def main() -> None:
+    settings = FilesHandler.get_json("settings.json")
+    print(settings["public_key"])
+    mode = get_arg()
+    hybrid = Hybrid()
+    match mode:
+        case "generate":
+            hybrid.generate_keys(settings["public_key"],
+                                 settings["private_key"],
+                                 settings["symmetric_key"])
+        case "encrypt":
+            hybrid.encrypt_data(settings["plain_text"],
+                                settings["private_key"],
+                                settings["symmetric_key"],
+                                settings["encrypted_text"])
+        case "decrypt":
+            hybrid.decrypt_data(settings["encrypted_text"],
+                                settings["private_key"],
+                                settings["symmetric_key"],
+                                settings["decrypted_text"])
+
+
+if __name__ == "__main__":
+    main()
+
 

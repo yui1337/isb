@@ -2,9 +2,12 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import rsa, padding
 from typing import Tuple
 
-from lab_3.fileshandler import FilesHandler
+from fileshandler import FilesHandler
 
 class Asymmetric:
+    """
+    Class that works with RSA algorithm
+    """
     def __init__(self):
         self.public_key = None
         self.private_key = None
@@ -38,7 +41,8 @@ class Asymmetric:
         """
         FilesHandler.write_public_key(save_path, self.private_key)
 
-    def deserialization_public_key(self, file_name: str) -> rsa.RSAPublicKey:
+    @staticmethod
+    def deserialization_public_key( file_name: str) -> rsa.RSAPublicKey:
         """
         Deserializes public key from file
         :param file_name: Path to the file with public key
@@ -46,7 +50,8 @@ class Asymmetric:
         """
         return FilesHandler.read_public_key(file_name)
 
-    def deserialization_private_key(self, file_name: str) -> rsa.RSAPrivateKey:
+    @staticmethod
+    def deserialization_private_key( file_name: str) -> rsa.RSAPrivateKey:
         """
         Deserializes private key from file
         :param file_name: Path to the file with private key
@@ -76,7 +81,6 @@ class Asymmetric:
         Decrypts symmetric algo key encrypted with RSA algorithm
         :param path_private: Path to the RSA private key
         :param path_encrypted: Path to the encrypted key
-        :param path_decrypted: Path to save the decrypted key
         :return: None
         """
         private_key = self.deserialization_private_key(path_private)

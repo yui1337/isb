@@ -4,7 +4,7 @@ from cryptography.hazmat.decrepit.ciphers import algorithms
 from cryptography.hazmat.primitives import padding
 from cryptography.hazmat.primitives.ciphers import Cipher, modes
 
-from lab_3.fileshandler import FilesHandler
+from fileshandler import FilesHandler
 
 
 class Symmetric:
@@ -64,7 +64,6 @@ class Symmetric:
         """
         Decrypts text, that encrypted using CAST5 algorithm, and
         saves it to the file
-        :param key: Key which was used to encrypt text
         :param encrypted_path: Path to the file with encrypted text
         :param save_path: Path so save file with decrypted text
         :return: Decrypted text

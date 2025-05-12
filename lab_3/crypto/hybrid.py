@@ -1,7 +1,10 @@
-from asymmetric import Asymmetric
-from symmetric import Symmetric
+from crypto.asymmetric import Asymmetric
+from crypto.symmetric import Symmetric
 
 class Hybrid:
+    """
+    Class that works with both CAST5 and RSA algos. More like interface.
+    """
     def __init__(self, key_length=128):
         self.symmetric = Symmetric()
         self.asymmetric = Asymmetric()

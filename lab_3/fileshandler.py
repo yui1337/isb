@@ -47,7 +47,7 @@ class FilesHandler:
         :return: Text from the file
         """
         try:
-            with open(file_name, 'r') as file:
+            with open(file_name, 'r', encoding='utf-8') as file:
                 return file.read()
         except FileNotFoundError:
             print(f"The file was not found.")
@@ -163,7 +163,7 @@ class FilesHandler:
             with open(file_name, 'rb') as pem_in:
                 private_bytes = pem_in.read()
                 return load_pem_private_key(
-                    private_bytes, password=None, )
+                    private_bytes, password=None)
         except FileNotFoundError:
             print(f"The file was not found.")
         except Exception as e:
