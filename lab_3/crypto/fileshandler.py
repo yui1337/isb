@@ -10,18 +10,14 @@ from cryptography.hazmat.primitives.serialization import load_pem_public_key, lo
 class FilesHandler:
 
     @staticmethod
-    def get_bytes(name: str) -> bytes:
+    def get_bytes(file_name: str) -> bytes:
         """
-        Reading data in bytes from a file
-
-        Args:
-            name: path to the file
-
-        Return:
-            bytes: byte data reading from the file
+        Reads data in bytes format from the file
+        :param file_name: Path to the file
+        :return: Bytes format object
         """
         try:
-            with open(name, 'rb') as file:
+            with open(file_name, 'rb') as file:
                 data = file.read()
             return data
         except FileNotFoundError:
@@ -30,35 +26,30 @@ class FilesHandler:
             print(f"An error occurred while reading the file: {str(e)}.")
 
     @staticmethod
-    def write_bytes(name: str, text: bytes) -> None:
+    def write_bytes(save_path: str, data: bytes) -> None:
         """
-        Writing data in bytes to a file
-
-        Args:
-            name: path to the file
-            text: data to write in bytes
+        Writes data to the file from bytes
+        :param save_path: Path to save the file
+        :param data: Data to save
+        :return: None
         """
         try:
-            with open(name, mode='wb') as file:
-                file.write(text)
+            with open(save_path, mode='wb') as file:
+                file.write(data)
         except FileNotFoundError:
             print(f"The file was not found.")
         except Exception as e:
             print(f"An error occurred while writing the file: {str(e)}.")
 
     @staticmethod
-    def get_txt(name: str) -> str:
+    def get_txt(file_name: str) -> str:
         """
-        The function is for reading .txt file
-
-        Args:
-            name: path to the .txt file
-
-        Returns:
-            text from file
+        Reads text from the file
+        :param file_name: Path to the file
+        :return: Text from the file
         """
         try:
-            with open(name, 'r') as file:
+            with open(file_name, 'r') as file:
                 return file.read()
         except FileNotFoundError:
             print(f"The file was not found.")
@@ -66,16 +57,15 @@ class FilesHandler:
             print(f"An error occurred while reading the file: {str(e)}.")
 
     @staticmethod
-    def write_txt(name: str, text: str) -> None:
+    def write_txt(save_path: str, text: str) -> None:
         """
-        The function for writing text to a file
-
-        Args:
-            name: path to the file to write
-            text: text to write to a file
+        Writes text to file
+        :param save_path: Path to save the file
+        :param text: Text to save
+        :return: None
         """
         try:
-            with open(name, 'w') as file:
+            with open(save_path, 'w') as file:
                 file.write(text)
         except FileNotFoundError:
             print(f"The file was not found.")
@@ -83,15 +73,14 @@ class FilesHandler:
             print(f"An error occurred while writing the file: {str(e)}.")
 
     @staticmethod
-    def get_json(name: str) -> Dict[str, str]:
+    def get_json(file_name: str) -> Dict[str, str]:
         """
-        The function is for reading .json file
-
-        Args:
-                name: path .json file
+        Reads json from the file
+        :param file_name: Path to the file
+        :return: Dict of [str, str]
         """
         try:
-            with open(name, 'r', encoding='utf-8') as file:
+            with open(file_name, 'r', encoding='utf-8') as file:
                 return json.load(file)
         except FileNotFoundError:
             print(f"The file was not found.")
@@ -99,33 +88,31 @@ class FilesHandler:
             print(f"An error occurred while reading json the file: {str(e)}.")
 
     @staticmethod
-    def write_json(name: str, data: dict) -> Dict[str, str]:
+    def write_json(save_path: str, data: dict) -> None:
         """
-        The function for writing to a json file
-
-        Args:
-                name: path to the file to write
-                data: data to write to a file
+        Saves data to json
+        :param save_path: Path to save the json
+        :param data: Data to save
+        :return: None
         """
         try:
-            with open(name, 'w', encoding='utf-8') as file:
-                return json.dump(data, file, ensure_ascii=False, indent=1)
+            with open(save_path, 'w', encoding='utf-8') as file:
+                json.dump(data, file, ensure_ascii=False, indent=1)
         except FileNotFoundError:
             print(f"The file was not found.")
         except Exception as e:
             print(f"An error occurred while writing json the file: {str(e)}.")
 
     @staticmethod
-    def write_public_key(name: str, public_key: rsa.RSAPublicKey) -> None:
+    def write_public_key(save_path: str, public_key: rsa.RSAPublicKey) -> None:
         """
-        Serializing the public key to a file
-
-        Args:
-            name: path of the lo file
-            public_key: RSA public key
+        Serializes public key to the file
+        :param save_path: Path to save the public key
+        :param public_key: RSA public key
+        :return: None
         """
         try:
-            with open(name, 'wb', encoding='utf-8') as public_out:
+            with open(save_path, 'wb', encoding='utf-8') as public_out:
                 public_out.write(public_key.public_bytes(encoding=serialization.Encoding.PEM,
                                                          format=serialization.PublicFormat.SubjectPublicKeyInfo))
         except FileNotFoundError:
@@ -134,16 +121,15 @@ class FilesHandler:
             print(f"An error occurred while writing the file: {str(e)}.")
 
     @staticmethod
-    def write_private_key(name: str, private_key: rsa.RSAPrivateKey) -> None:
+    def write_private_key(save_path: str, private_key: rsa.RSAPrivateKey) -> None:
         """
-        Serializing the private key to a file
-
-        Args:
-                name: path of the lo file
-                private_key: RSA private key
+        Serializes private key to the file
+        :param save_path: Path to save the private key
+        :param private_key: RSA private key
+        :return: None
         """
         try:
-            with open(name, 'wb', encoding='utf-8') as private_out:
+            with open(save_path, 'wb', encoding='utf-8') as private_out:
                 private_out.write(private_key.private_bytes(encoding=serialization.Encoding.PEM,
                                                             format=serialization.PrivateFormat.TraditionalOpenSSL,
                                                             encryption_algorithm=serialization.NoEncryption()))
@@ -153,18 +139,14 @@ class FilesHandler:
             print(f"An error occurred while writing the file: {str(e)}.")
 
     @staticmethod
-    def read_public_key(name: str) -> rsa.RSAPublicKey:
+    def read_public_key(file_name: str) -> rsa.RSAPublicKey:
         """
-         Deserialization of the public key
-
-        Args:
-                 name: path of the lo file
-
-        Returns:
-                 rsa.RSAPublicKey: RSA public key
+        Deserializes public key from the file
+        :param file_name: Path to the file
+        :return: RSA public key object
         """
         try:
-            with open(name, 'rb', encoding='utf-8') as pem_in:
+            with open(file_name, 'rb', encoding='utf-8') as pem_in:
                 public_bytes = pem_in.read()
                 return load_pem_public_key(public_bytes)
         except FileNotFoundError:
@@ -173,18 +155,14 @@ class FilesHandler:
             print(f"An error occurred while reading the file: {str(e)}.")
 
     @staticmethod
-    def read_private_key(name: str) -> rsa.RSAPrivateKey:
+    def read_private_key(file_name: str) -> rsa.RSAPrivateKey:
         """
-        Deserialization of the private key
-
-        Args:
-                 name: path of the lo file
-
-        Returns:
-                 rsa.RSAPrivateKey: RSA private key
+        Deserializes private key from the file
+        :param file_name: Path to the file
+        :return: RSA private key object
         """
         try:
-            with open(name, 'rb', encoding='utf-8') as pem_in:
+            with open(file_name, 'rb', encoding='utf-8') as pem_in:
                 private_bytes = pem_in.read()
                 return load_pem_private_key(
                     private_bytes, password=None, )
@@ -192,3 +170,4 @@ class FilesHandler:
             print(f"The file was not found.")
         except Exception as e:
             print(f"An error occurred while reading the file: {str(e)}.")
+
