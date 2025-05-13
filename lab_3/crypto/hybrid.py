@@ -60,6 +60,6 @@ class Hybrid:
         :param save_path: Path to save the encrypted data
         :return: None
         """
-        self.asymmetric.decrypt_symmetric_key(private_path, encrypted_key_path)
+        self.symmetric.key = self.asymmetric.decrypt_symmetric_key(private_path, encrypted_key_path)
         self.symmetric.decrypt_text(encrypted_file_path, save_path)
 
