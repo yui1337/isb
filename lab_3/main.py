@@ -1,6 +1,8 @@
 import argparse
+import os.path
 
 from crypto.hybrid import Hybrid
+from const import USER_SETTINGS_FILE, ROOT_DIR
 from fileshandler import FilesHandler
 
 
@@ -15,7 +17,10 @@ def get_arg() -> str:
     return arguments.mode
 
 def main() -> None:
-    settings = FilesHandler.get_json("settings.json")
+    settings = FilesHandler.get_json(USER_SETTINGS_FILE)
+    for name, path in settings.items():
+        path = os.path.join(ROOT_DIR, path)
+        settings[name] = path
     mode = get_arg()
     hybrid = Hybrid()
     match mode:
