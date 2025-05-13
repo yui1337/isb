@@ -67,7 +67,6 @@ class Asymmetric:
         :param save_path: Path to save encrypted key
         :return: None
         """
-        print("Я СЕМЕН ЛОБАНОВ У МЕНЯ БАШКА ИЗ КАРТОШКИ")
         public_key = self.deserialization_public_key(path_public)
         c_text = public_key.encrypt(symmetric_key, padding.OAEP(
             mgf=padding.MGF1(algorithm=hashes.SHA256()),
